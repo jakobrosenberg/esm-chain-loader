@@ -19,6 +19,9 @@
     "chain"
   ],
   "author": "jakobrosenberg@gmail.com",
+  "repository": {
+    "url": "https://github.com/jakobrosenberg/esm-chain-loader"
+  },
   "license": "MIT",
   "devDependencies": {
     "nodemon": "^2.0.15",
