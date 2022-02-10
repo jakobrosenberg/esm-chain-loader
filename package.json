@@ -1,0 +1,27 @@
+{
+  "name": "esm-chain-loader",
+  "version": "0.0.1",
+  "description": "use multiple node loaders",
+  "main": "index.js",
+  "type": "module",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "test": "probs test",
+    "watch-test": "nodemon --exec npm run test"
+  },
+  "keywords": [
+    "node",
+    "loader",
+    "esm",
+    "multiple",
+    "chain"
+  ],
+  "author": "jakobrosenberg@gmail.com",
+  "license": "MIT",
+  "devDependencies": {
+    "nodemon": "^2.0.15",
+    "probs": "^1.0.0-3"
+  }
+}
