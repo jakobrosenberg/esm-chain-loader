@@ -1,4 +1,4 @@
-import { resolveLoaderPaths, resolveLoadersFromPaths } from "../utils.js";
+import { resolveLoaderPaths, getLoadersFromPaths, getLoadersFromArgs } from "../utils.js";
 
 const argv = [
   "/path/to/node",
@@ -16,9 +16,11 @@ test("can get loader paths", () => {
   assert.deepEqual(paths, ["./test/sample/loader1.js", "./test/sample/loader2.js", "./test/sample/loader3.js"]);
 });
 
-test("can resolve loaders", async () => {
+test("can get loaders", async () => {
   const paths = resolveLoaderPaths(argv);
-  const loaders = await resolveLoadersFromPaths(paths);
+  const loaders = await getLoadersFromPaths(paths);
+  const loaders2 = await getLoadersFromArgs(argv);
   assert.equal(loaders.length, 3);
   assert(loaders[0].transformSource);
+  assert.deepEqual(loaders, loaders2);
 });

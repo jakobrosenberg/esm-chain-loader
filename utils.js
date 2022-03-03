@@ -1,3 +1,7 @@
+import { resolve } from "import-meta-resolve";
+import { createRequire } from "module";
+import { pathToFileURL } from "url";
+
 /**
  * @param {string[]} argv
  */
@@ -12,10 +16,20 @@ export const resolveLoaderPaths = (argv = process.argv) => {
 /**
  * @param {string[]} paths
  */
-export const resolveLoadersFromPaths = async (paths) =>
-  Promise.all(paths.map((path) => import(path)));
+export const getLoadersFromPaths = async (paths) => {
+  const require = createRequire(process.cwd());
+  return Promise.all(
+    paths.map(async (path) => {
+      try {
+        const resolvedPath = require.resolve(path, { paths: [process.cwd()] });
+        const url = pathToFileURL(resolvedPath);
+        return import(url.pathname);
+      } catch (err) {
+        console.error("failed to load loader", path);
+        throw err;
+      }
+    })
+  );
+};
 
-/**
- * @param {string[]} argv
- */
-export const resolveLoadersFromArgv = (argv) => resolveLoadersFromPaths(resolveLoaderPaths(argv));
+export const getLoadersFromArgs = (args) => getLoadersFromPaths(resolveLoaderPaths(args));

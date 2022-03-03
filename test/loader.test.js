@@ -1,5 +1,3 @@
-import { transformSource } from "../index.js";
-
 process.argv = [
   "/path/to/node",
   "/path/to/utils.js",
@@ -14,10 +12,10 @@ process.argv = [
 ];
 
 test("can apply loaders", async () => {
+  const { transformSource } = await import("../index.js");
+
   const source = "foobar";
-  console.log("before");
   const result = await transformSource(source, { url: "/some/path/to/file.js" }, (source) => ({ source }));
-  console.log("after");
   assert.deepEqual(result, {
     source: "foobar\r\n\r\n// loader1\r\n\r\n// loader2\r\n\r\n// loader3",
   });
