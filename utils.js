@@ -20,9 +20,13 @@ export const getLoadersFromPaths = async (paths) => {
   return Promise.all(
     paths.map(async (path) => {
       try {
-        const resolvedPath = require.resolve(path, { paths: [process.cwd()] });
-        const url = pathToFileURL(resolvedPath);
-        return import(url.pathname);
+        if (path.startsWith("file:///")) {
+          return import(path);
+        } else {
+          const resolvedPath = require.resolve(path, { paths: [process.cwd()] });
+          const url = pathToFileURL(resolvedPath);
+          return import(url.href);
+        }
       } catch (err) {
         console.error("failed to load loader", path);
         throw err;
