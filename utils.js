@@ -1,4 +1,3 @@
-import { resolve } from "import-meta-resolve";
 import { createRequire } from "module";
 import { pathToFileURL } from "url";
 
