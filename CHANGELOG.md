@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.0.3-2](https://github.com/jakobrosenberg/esm-chain-loader/compare/v0.0.3-1...v0.0.3-2) (2022-03-04)
+
+
+### Bug Fixes
+
+* imports ([3b94e63](https://github.com/jakobrosenberg/esm-chain-loader/commit/3b94e635b02023751922a3449f41b50ab41f14ba))
+
 ### [0.0.3-1](https://github.com/jakobrosenberg/esm-chain-loader/compare/v0.0.3-0...v0.0.3-1) (2022-03-04)
 
 
